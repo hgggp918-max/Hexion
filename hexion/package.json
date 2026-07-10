@@ -1,0 +1,19 @@
+{
+  "name": "hexion",
+  "version": "1.0.0",
+  "description": "HEXION 3 Developers",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "HEXION",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.11.0",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "sqlite3": "^5.1.7"
+  }
+}
