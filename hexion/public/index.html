@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HEXION 3 Developers</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+scroll-behavior:smooth;
+}
+
+
+body{
+
+background:
+linear-gradient(135deg,#010101,#071421,#010101);
+
+color:white;
+
+overflow-x:hidden;
+
+min-height:100vh;
+
+}
+
+
+
+canvas{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+z-index:-2;
+
+}
+
+
+
+/* HEADER */
+
+header{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:85px;
+
+background:rgba(0,0,0,.45);
+
+backdrop-filter:blur(15px);
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 50px;
+
+border-bottom:1px solid rgba(0,170,255,.4);
+
+z-index:100;
+
+}
+
+
+
+.logo{
+
+font-size:38px;
+
+font-weight:800;
+
+color:#00bfff;
+
+text-shadow:
+0 0 25px #00bfff;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+.logo:hover{
+
+transform:scale(1.08);
+
+}
+
+
+
+/* BUTTON */
+
+button{
+
+background:
+rgba(15,25,40,.8);
+
+color:white;
+
+border:1px solid #00bfff;
+
+padding:15px 28px;
+
+border-radius:16px;
+
+cursor:pointer;
+
+transition:.25s;
+
+font-size:17px;
+
+}
+
+
+
+button:hover{
+
+transform:scale(1.08);
+
+background:#00bfff;
+
+color:black;
+
+box-shadow:
+0 0 35px #00bfff;
+
+}
+
+
+
+.right{
+
+display:flex;
+
+gap:15px;
+
+}
+
+
+
+/* SIDEBAR */
+
+
+.sidebar{
+
+position:fixed;
+
+left:35px;
+
+top:180px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+z-index:90;
+
+}
+
+
+
+.sidebar button{
+
+width:230px;
+
+height:62px;
+
+font-size:20px;
+
+border-radius:18px;
+
+}
+
+
+
+/* MAIN */
+
+
+main{
+
+margin-left:320px;
+
+padding-top:150px;
+
+padding-right:60px;
+
+padding-left:30px;
+
+}
+
+
+
+section{
+
+display:none;
+
+animation:fade .4s;
+
+}
+
+
+
+section.active{
+
+display:block;
+
+}
+
+
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+
+
+/* HERO */
+
+
+.hero h1{
+
+font-size:85px;
+
+font-weight:800;
+
+color:#00c8ff;
+
+text-shadow:
+
+0 0 30px #00c8ff;
+
+}
+
+
+
+.hero p{
+
+font-size:28px;
+
+margin-top:25px;
+
+max-width:900px;
+
+line-height:48px;
+
+}
+
+
+ 
+/* CARDS */
+
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:30px;
+
+margin-top:80px;
+
+}
+
+
+
+.card{
+
+background:
+
+rgba(15,25,45,.65);
+
+border:
+
+1px solid rgba(0,180,255,.35);
+
+border-radius:25px;
+
+padding:35px;
+
+backdrop-filter:blur(18px);
+
+transition:.35s;
+
+}
+
+
+
+.card:hover{
+
+transform:
+
+translateY(-8px) scale(1.03);
+
+box-shadow:
+
+0 0 35px rgba(0,180,255,.5);
+
+}
+
+
+
+.card h2{
+
+font-size:32px;
+
+margin-bottom:20px;
+
+color:#00bfff;
+
+}
+
+
+
+.card p{
+
+font-size:20px;
+
+line-height:34px;
+
+}
+
+
+
+/* CHAT ICON */
+
+
+.chat-icon{
+
+position:fixed;
+
+right:35px;
+
+bottom:35px;
+
+width:80px;
+
+height:80px;
+
+background:#00bfff;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:38px;
+
+cursor:pointer;
+
+box-shadow:
+
+0 0 35px #00bfff;
+
+transition:.3s;
+
+z-index:999;
+
+}
+
+
+
+.chat-icon:hover{
+
+transform:scale(1.12);
+
+}
+
+
+
+
+
+/* CHAT BOX */
+
+
+.chat{
+
+position:fixed;
+
+right:35px;
+
+bottom:130px;
+
+width:390px;
+
+height:560px;
+
+background:#0a111d;
+
+border:
+
+1px solid #00bfff;
+
+border-radius:20px;
+
+display:none;
+
+flex-direction:column;
+
+overflow:hidden;
+
+z-index:999;
+
+}
+
+
+
+.chat-header{
+
+background:#00bfff;
+
+padding:18px;
+
+font-size:22px;
+
+font-weight:bold;
+
+color:black;
+
+}
+
+
+
+.chat-messages{
+
+flex:1;
+
+padding:20px;
+
+overflow-y:auto;
+
+}
+
+
+
+.msg-ai{
+
+background:#1a2638;
+
+padding:14px;
+
+border-radius:15px;
+
+margin-bottom:12px;
+
+max-width:85%;
+
+}
+
+
+
+.msg-user{
+
+background:#00bfff;
+
+color:black;
+
+padding:14px;
+
+border-radius:15px;
+
+margin-left:auto;
+
+margin-bottom:12px;
+
+max-width:85%;
+
+}
+
+
+
+.chat-input{
+
+display:flex;
+
+border-top:
+
+1px solid rgba(255,255,255,.1);
+
+}
+
+
+
+.chat-input input{
+
+flex:1;
+
+background:#101b2d;
+
+border:none;
+
+outline:none;
+
+padding:18px;
+
+color:white;
+
+font-size:17px;
+
+}
+
+
+
+.chat-input button{
+
+margin:10px;
+
+}
+
+
+
+
+
+/* BAŞVURU FORMU */
+
+
+.apply-box{
+
+margin-top:50px;
+
+max-width:650px;
+
+background:
+
+rgba(10,20,35,.8);
+
+border:
+
+1px solid #00bfff;
+
+border-radius:25px;
+
+padding:40px;
+
+box-shadow:
+
+0 0 40px rgba(0,191,255,.3);
+
+}
+
+
+
+.apply-box input,
+
+.apply-box textarea{
+
+
+width:100%;
+
+background:#101b2d;
+
+border:none;
+
+outline:none;
+
+border-radius:15px;
+
+padding:18px;
+
+margin-bottom:20px;
+
+color:white;
+
+font-size:18px;
+
+}
+
+
+
+.apply-box input{
+
+height:60px;
+
+}
+
+
+
+.apply-box textarea{
+
+height:180px;
+
+resize:none;
+
+}
+
+
+
+.apply-box button{
+
+width:100%;
+
+height:60px;
+
+font-size:20px;
+
+}
+
+
+
+
+/* FOOTER */
+
+
+.footer{
+
+margin-top:120px;
+
+padding:50px;
+
+text-align:center;
+
+font-size:18px;
+
+color:#8cb9d9;
+
+border-top:
+
+1px solid rgba(255,255,255,.08);
+
+}
+
+
+
+.footer b{
+
+color:#00bfff;
+
+}
+
+
+
+
+/* RESPONSIVE */
+
+
+@media(max-width:1100px){
+
+
+.sidebar{
+
+display:none;
+
+}
+
+
+main{
+
+margin-left:0;
+
+padding:120px 30px;
+
+}
+
+
+.hero h1{
+
+font-size:55px;
+
+}
+
+
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+
+<canvas id="bg"></canvas>
+
+
+
+<header>
+
+
+<div class="logo">
+HEXION
+</div>
+
+
+<div class="right">
+
+<button onclick="showSection('apply')">
+🚀 Başvur
+</button>
+
+</div>
+
+
+</header>
+
+
+
+
+
+<div class="sidebar">
+
+
+<button onclick="showSection('home')">
+🏠 Ana Sayfa
+</button>
+
+
+<button onclick="showSection('about')">
+👥 Biz Kimiz
+</button>
+
+
+<button onclick="showSection('projects')">
+🚀 Projeler
+</button>
+
+
+<button onclick="window.open('https://discord.gg/tmrcb9gUJ')">
+💬 Discord
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<main>
+
+
+
+
+<section id="home" class="active">
+
+
+<div class="hero">
+
+
+<h1>
+HEXION 3 Developers
+</h1>
+
+
+<p>
+Modern yazılım ve siber güvenlik ekibi.
+Yazılım geliştiriyor, öğreniyor ve üretiyoruz.
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="cards">
+
+
+
+<div class="card">
+
+<h2>
+⚠ UYARI
+</h2>
+
+<p>
+Biz bir siber güvenlik ekibiyiz.
+Yaptığımız her şey yasaldır.
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h2>
+📊 İstatistik
+</h2>
+
+<p>
+Aktif Projeler:
+<br>
+Yakında...
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h2>
+🌍 Durum
+</h2>
+
+<p>
+HEXION ONLINE
+</p>
+
+</div>
+
+
+
+</div>
+
+
+
+</section>
+
+<section id="about">
+
+
+<div class="hero">
+
+<h1>
+Biz Kimiz?
+</h1>
+
+
+<p>
+
+HEXION 3 Developers;
+Web Yazılım, Masaüstü Yazılım, Discord Bot,
+Siber Güvenlik Araştırmaları ve Oyun Sistemleri
+geliştiren modern bir yazılım ekibidir.
+
+</p>
+
+
+</div>
+
+
+
+
+<div class="cards">
+
+
+
+<div class="card">
+
+<h2>
+💻 Yazılım
+</h2>
+
+<p>
+HTML<br>
+CSS<br>
+JavaScript<br>
+Python<br>
+C#<br>
+NodeJS
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>
+🛡 Siber Güvenlik
+</h2>
+
+<p>
+
+CTF<br>
+Web Güvenliği<br>
+Ağ Güvenliği<br>
+Linux<br>
+Pentest
+
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>
+🤝 Ekibimiz
+</h2>
+
+<p>
+
+Yeni geliştiricilere destek olur,
+birlikte projeler geliştiririz.
+
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<section id="projects">
+
+
+<div class="hero">
+
+
+<h1>
+🚀 Projeler
+</h1>
+
+
+<p>
+
+HEXION tarafından geliştirilen
+ve geliştirilecek sistemler.
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="cards">
+
+
+
+<div class="card">
+
+<h2>
+🌐 HEXION PANEL
+</h2>
+
+<p>
+Sunucu yönetim paneli.
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>
+🤖 HEXION AI
+</h2>
+
+<p>
+Yapay zeka destekli yardımcı sistem.
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>
+💬 HEXION CHAT
+</h2>
+
+<p>
+Modern sohbet sistemi.
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>
+⚡ HEXION API
+</h2>
+
+<p>
+Geliştiriciler için API sistemi.
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>
+📱 HEXION Launcher
+</h2>
+
+<p>
+Windows launcher sistemi.
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>
+🔒 Güvenlik Araçları
+</h2>
+
+<p>
+Yeni güvenlik projeleri.
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section id="apply">
+
+
+<div class="hero">
+
+
+<h1>
+🚀 Başvuru
+</h1>
+
+
+<p>
+
+HEXION ekibine katılmak için
+bilgilerini doldur.
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="apply-box">
+
+
+<input id="isim" placeholder="Ad Soyad">
+
+
+<input id="dc" placeholder="Discord Kullanıcı Adı">
+
+
+<input id="yas" placeholder="Yaş">
+
+
+<textarea 
+id="sebep"
+placeholder="Neden seni seçmeliyiz?">
+</textarea>
+
+
+
+<button onclick="sendApplication()">
+
+Başvuruyu Gönder
+
+</button>
+
+
+
+</div>
+
+
+
+</section>
+
+</main>
+
+
+
+
+
+<!-- CHAT -->
+
+
+<div class="chat-icon" onclick="toggleChat()">
+
+💬
+
+</div>
+
+
+
+
+
+<div class="chat" id="chat">
+
+
+<div class="chat-header">
+
+🤖 HEXION AI
+
+</div>
+
+
+
+<div class="chat-messages" id="messages">
+
+
+<div class="msg-ai">
+
+Merhaba 👋 Ben HEXION AI.
+Yazılım ve teknoloji hakkında sorular sorabilirsin.
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="chat-input">
+
+
+<input id="message" placeholder="Mesaj Yaz...">
+
+
+<button onclick="sendMessage()">
+
+Gönder
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="footer">
+
+
+<b>
+HEXION 3 Developers
+</b>
+
+
+<br><br>
+
+
+© 2026 Tüm Hakları Saklıdır.
+
+<br>
+
+Türkiye Cumhuriyeti yasalarına uygun şekilde faaliyet göstermektedir.
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+
+
+
+/* SAYFA DEĞİŞTİRME */
+
+
+function showSection(id){
+
+
+document.querySelectorAll("section").forEach(section=>{
+
+
+section.classList.remove("active");
+
+
+});
+
+
+
+document.getElementById(id).classList.add("active");
+
+
+}
+
+
+
+
+
+
+
+
+/* CHAT AÇ KAPA */
+
+
+function toggleChat(){
+
+
+let chat=document.getElementById("chat");
+
+
+
+if(chat.style.display==="flex"){
+
+chat.style.display="none";
+
+}
+
+else{
+
+chat.style.display="flex";
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+/* CHAT MESAJ */
+
+
+function sendMessage(){
+
+
+let input=document.getElementById("message");
+
+
+let text=input.value.trim();
+
+
+
+if(text==="") return;
+
+
+
+let messages=document.getElementById("messages");
+
+
+
+messages.innerHTML += `
+
+<div class="msg-user">
+
+${text}
+
+</div>
+
+
+<div class="msg-ai">
+
+Bu sürüm demo.
+Gerçek AI bağlantısı yakında eklenecek.
+
+</div>
+
+`;
+
+
+
+input.value="";
+
+
+messages.scrollTop=messages.scrollHeight;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* DISCORD WEBHOOK BAŞVURU */
+
+
+function sendApplication(){
+
+
+
+let isim=document.getElementById("isim").value;
+
+let dc=document.getElementById("dc").value;
+
+let yas=document.getElementById("yas").value;
+
+let sebep=document.getElementById("sebep").value;
+
+
+
+
+
+if(!isim || !dc || !yas || !sebep){
+
+
+alert("Lütfen tüm alanları doldurun!");
+
+return;
+
+
+}
+
+
+
+
+
+
+let webhook="https://discord.com/api/webhooks/1524815482723766344/UNX5l3QfH_lFRZ-KTgXNcZlQ-TSbv-VNjB30xaeNDyHCZZWWRWiZlk8X2cA_L0HgmSuQ";
+
+
+
+
+
+
+
+let data={
+
+
+embeds:[
+
+{
+
+title:"🚀 Yeni HEXION Başvurusu",
+
+
+color:255,
+
+
+
+fields:[
+
+
+{
+
+name:"👤 İsim",
+
+value:isim,
+
+inline:true
+
+},
+
+
+{
+
+name:"💬 Discord",
+
+value:dc,
+
+inline:true
+
+},
+
+
+{
+
+name:"🎂 Yaş",
+
+value:yas,
+
+inline:true
+
+},
+
+
+{
+
+name:"📝 Başvuru Sebebi",
+
+value:sebep
+
+}
+
+
+
+],
+
+
+
+footer:{
+
+
+text:"HEXION 3 Developers"
+
+},
+
+
+
+timestamp:new Date()
+
+
+}
+
+]
+
+
+};
+
+
+
+
+
+
+fetch(webhook,{
+
+
+method:"POST",
+
+
+headers:{
+
+
+"Content-Type":"application/json"
+
+
+},
+
+
+body:JSON.stringify(data)
+
+
+})
+
+.then(()=>{
+
+
+alert("Başvurun başarıyla gönderildi 🚀");
+
+
+
+document.getElementById("isim").value="";
+
+document.getElementById("dc").value="";
+
+document.getElementById("yas").value="";
+
+document.getElementById("sebep").value="";
+
+
+
+})
+
+
+.catch(()=>{
+
+
+alert("Başvuru gönderilemedi!");
+
+});
+
+
+}
+
+
+
+
+
+
+
+
+/* PARTICLE ARKA PLAN */
+
+
+const canvas=document.getElementById("bg");
+
+const ctx=canvas.getContext("2d");
+
+
+
+function resize(){
+
+
+canvas.width=window.innerWidth;
+
+canvas.height=window.innerHeight;
+
+
+}
+
+
+
+resize();
+
+
+window.addEventListener("resize",resize);
+
+
+
+
+
+let particles=[];
+
+
+
+for(let i=0;i<120;i++){
+
+
+particles.push({
+
+
+x:Math.random()*canvas.width,
+
+y:Math.random()*canvas.height,
+
+r:Math.random()*4+2,
+
+dx:(Math.random()-0.5)*0.5,
+
+dy:(Math.random()-0.5)*0.5
+
+
+});
+
+
+}
+
+
+
+
+
+
+function animate(){
+
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+
+
+particles.forEach(p=>{
+
+
+ctx.beginPath();
+
+
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+
+
+
+ctx.fillStyle="#00bfff";
+
+
+ctx.shadowBlur=25;
+
+
+ctx.shadowColor="#00bfff";
+
+
+ctx.fill();
+
+
+
+p.x+=p.dx;
+
+p.y+=p.dy;
+
+
+
+if(p.x<0||p.x>canvas.width)
+
+p.dx*=-1;
+
+
+
+if(p.y<0||p.y>canvas.height)
+
+p.dy*=-1;
+
+
+
+});
+
+
+
+requestAnimationFrame(animate);
+
+
+}
+
+
+
+animate();
+
+
+
+</script>
+
+
+</body>
+
+</html>
